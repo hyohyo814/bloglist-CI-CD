@@ -7,7 +7,7 @@ const errorHandler = (err, req, res, next) => {
   if (err.name === 'CastError') {
     res.status(400).send({ error: 'malformatted id' });
   } else if (err.name === 'ValidationError') {
-    res.status(400).json({ error: err.message });
+    throw new Error(err.message);
   } else if (err.name === 'JsonWebTokenError') {
     res.status(401).json({ error: err.message });
   }

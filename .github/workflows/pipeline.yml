@@ -19,13 +19,13 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Check style
-        run: npm run eslint
+        run: npm run lint
       - name: Run tests
         run: npm run test
       - name: e2e component tests
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          build: cd frontend && npm run build
-          start: npm start
+          build: npm run build
+          start: npm run start:test
           wait-on: http://localhost:3000

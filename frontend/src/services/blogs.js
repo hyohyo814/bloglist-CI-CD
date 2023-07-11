@@ -1,10 +1,11 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3003/api/blogs'
 
-let token = null
+const userJSON = window.localStorage.getItem('loggedUser')
+const user = JSON.parse(userJSON)
 
-const setToken = (newToken) => {
-  token = `Bearer ${newToken}`
+const headers = {
+  Authorization: user ? `Bearer ${user.token}` : null,
 }
 
 const getAll = async () => {
@@ -18,38 +19,23 @@ const get = async (id) => {
 }
 
 const create = async (newObj) => {
-  // console.log(token);
-  const config = {
-    headers: { Authorization: token },
-  }
-  // console.log(config);
+  const res = await axios.post(baseUrl, newObj, { headers })
+  return res.data
+}
 
-  const res = await axios.post(baseUrl, newObj, config)
+const comment = async (string, id) => {
+  const res = await axios.post(`${baseUrl}/${id}/comments`, { comment: string })
   return res.data
 }
 
 const update = async (updObj, id) => {
-  // console.log(updObj);
-  // console.log(id);
-  const config = {
-    headers: { Authorization: token },
-  }
-  const res = await axios.put(`${baseUrl}/${id}`, updObj, config)
-  // console.log(res.data)
+  const res = await axios.put(`${baseUrl}/${id}`, updObj, { headers })
   return res.data
 }
 
 const remove = async (id) => {
-  const check = await axios.get(`${baseUrl}/${id}`)
-  console.log(check)
-  const config = {
-    headers: { Authorization: token },
-  }
-  // console.log(baseUrl)
-  // console.log(id)
-  // console.log(config)
-  await axios.delete(`${baseUrl}/${id}`, config)
+  await axios.delete(`${baseUrl}/${id}`, { headers })
   return console.log('deletion successful')
 }
 
-export default { getAll, get, create, update, remove, setToken }
+export default { getAll, get, create, comment, update, remove }

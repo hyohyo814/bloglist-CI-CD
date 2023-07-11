@@ -1,20 +1,23 @@
-import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { createPost } from '../reducers/blogReducer'
+import { setNotif } from '../reducers/notifReducer'
 
-const BlogCreate = ({ handle }) => {
-  const [newTitle, setNewTitle] = useState('')
-  const [newAuthor, setNewAuthor] = useState('')
-  const [newUrl, setNewUrl] = useState('')
+const BlogCreate = () => {
+  const dispatch = useDispatch()
 
-  const addBlog = (event) => {
+  const addBlog = async (event) => {
     event.preventDefault()
-    handle({
-      title: newTitle,
-      author: newAuthor,
-      url: newUrl,
-    })
-    setNewTitle('')
-    setNewAuthor('')
-    setNewUrl('')
+    const newObj = {
+      title: event.target.Title.value,
+      author: event.target.Author.value,
+      url: event.target.Url.value,
+    }
+    console.log(newObj)
+    dispatch(createPost(newObj))
+    dispatch(setNotif(`${event.target.Title.value} by ${event.target.Author.value} added`, 5))
+    event.target.Title.value = ''
+    event.target.Author.value = ''
+    event.target.Url.value = ''
   }
 
   return (
@@ -25,33 +28,31 @@ const BlogCreate = ({ handle }) => {
           title:
           <input
             type="text"
-            value={newTitle}
             name="Title"
-            onChange={(event) => setNewTitle(event.target.value)}
-            id='titleinp'
+            id="titleinp"
           />
         </div>
         <div>
           author:
           <input
             type="text"
-            value={newAuthor}
             name="Author"
-            onChange={(event) => setNewAuthor(event.target.value)}
-            id='authorinp'
+            id="authorinp"
           />
         </div>
         <div>
           url:
           <input
             type="text"
-            value={newUrl}
             name="Url"
-            onChange={(event) => setNewUrl(event.target.value)}
-            id='urlinp'
+            id="urlinp"
           />
         </div>
-        <button type="submit" id="submitblog">create</button>
+        <button
+          type="submit"
+          id="submitblog">
+          create
+        </button>
       </form>
     </>
   )
