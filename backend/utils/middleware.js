@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const logger = require('./logger');
 const User = require('../models/user');
 
 const errorHandler = (err, req, res, next) => {
@@ -36,6 +35,7 @@ const userExtractor = async (req, res, next) => {
     return res.status(401).json({ error: 'jwt must be provided' });
   }
 
+  // eslint-disable-next-line no-undef
   const decodedToken = jwt.verify(token, process.env.SECRET);
 
   // console.log(decodedToken.id);
