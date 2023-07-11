@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm i
       - name: Check style
-        run: npm run eslint
+        run: npm run lint
       - name: Run tests
         run: npm run test
       - name: e2e component tests
