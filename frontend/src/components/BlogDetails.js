@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react'
-import Togglable from './Togglable'
-import Likes from './Likes'
-import blogService from '../services/blogs.js'
+import { useState, useEffect } from 'react';
+import Togglable from './Togglable';
+import Likes from './Likes';
+import blogService from '../services/blogs.js';
 
-const BlogDetails = ({ blog, index }) => {
-  const [likes, setLikes] = useState()
+const BlogDetails = ({ blog }) => {
+  const [likes, setLikes] = useState();
 
   useEffect(() => {
-    setLikes(blog.likes)
-  }, [blog])
+    setLikes(blog.likes);
+  }, [blog]);
 
   const handleLikes = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
     // console.log(`button clicked on ${blog.id}`);
     // console.log(res.likes);
 
@@ -21,11 +21,11 @@ const BlogDetails = ({ blog, index }) => {
       url: blog.url,
       user: blog.user,
       likes: likes + 1,
-    }
+    };
 
-    await blogService.update(newBlogObj, blog.id)
-    setLikes(likes + 1)
-  }
+    await blogService.update(newBlogObj, blog.id);
+    setLikes(likes + 1);
+  };
 
   return (
     <Togglable buttonLabel="view">
@@ -36,7 +36,7 @@ const BlogDetails = ({ blog, index }) => {
       </div>
       {blog.user.name} <br />
     </Togglable>
-  )
-}
+  );
+};
 
-export default BlogDetails
+export default BlogDetails;

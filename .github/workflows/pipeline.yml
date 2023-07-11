@@ -27,5 +27,5 @@ jobs:
         with:
           command: npm run test:e2e
           build: cd frontend && npm run build
-          start: npm start
+          start: npm start:test
           wait-on: http://localhost:3000

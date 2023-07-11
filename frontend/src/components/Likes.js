@@ -3,7 +3,7 @@ const Likes = ({ handle }) => {
     <>
       <button onClick={handle} placeholder={'likebtn'}>like</button>
     </>
-  )
-}
+  );
+};
 
-export default Likes
+export default Likes;

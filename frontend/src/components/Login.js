@@ -1,20 +1,20 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const Login = ({ handle }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [user, setUser] = useState(null)
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [user, setUser] = useState(null);
 
   const handleLogin = (event) => {
-    event.preventDefault()
+    event.preventDefault();
     handle({
       username: username,
       password: password,
-    })
-    setUser(user)
-    setUsername('')
-    setPassword('')
-  }
+    });
+    setUser(user);
+    setUsername('');
+    setPassword('');
+  };
 
   return (
     <form onSubmit={handleLogin}>
@@ -40,7 +40,7 @@ const Login = ({ handle }) => {
       </div>
       <button id="loginbtn" type="submit">login</button>
     </form>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

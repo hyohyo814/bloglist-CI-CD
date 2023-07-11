@@ -1,5 +1,5 @@
-import BlogBasic from './BlogBasic'
-import BlogDetails from './BlogDetails'
+import BlogBasic from './BlogBasic';
+import BlogDetails from './BlogDetails';
 
 const BlogDisp = ({ blog, index }) => {
   const blogStyle = {
@@ -8,14 +8,14 @@ const BlogDisp = ({ blog, index }) => {
     border: 'solid',
     borderWidth: 1,
     marginBottom: 5,
-  }
+  };
 
   return (
     <div style={blogStyle}>
       <BlogBasic blog={blog} />
       <BlogDetails blog={blog} index={index} />
     </div>
-  )
-}
+  );
+};
 
-export default BlogDisp
+export default BlogDisp;

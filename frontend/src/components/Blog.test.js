@@ -1,8 +1,7 @@
-import React from 'react'
-import '@testing-library/jest-dom/extend-expect'
-import { render, screen } from '@testing-library/react'
-import BlogBasic from './BlogBasic'
-import userEvent from '@testing-library/user-event'
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { render, screen } from '@testing-library/react';
+import BlogBasic from './BlogBasic';
 
 test('renders content', () => {
   const blog = {
@@ -13,12 +12,12 @@ test('renders content', () => {
     user: {
       name: 'Adam',
     },
-  }
+  };
 
-  render(<BlogBasic blog={blog} />)
-  const titleElement = screen.getByText('Hello World')
-  const authorElement = screen.getByText('John')
+  render(<BlogBasic blog={blog} />);
+  const titleElement = screen.getByText('Hello World');
+  const authorElement = screen.getByText('John');
 
-  expect(titleElement).toBeDefined()
-  expect(authorElement).toBeDefined()
-})
+  expect(titleElement).toBeDefined();
+  expect(authorElement).toBeDefined();
+});
