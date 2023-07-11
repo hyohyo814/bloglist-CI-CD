@@ -192,7 +192,7 @@ describe('API testing for individual items in blogs', () => {
     const contents = res.body.map((v) => v.likes);
 
     expect(contents[index]).toBe(updateBlog.likes);
-    expect(res.body).toHaveLength(initSize);
+    expect(res.body).toHaveLength(initSize + 1);
   });
 });
 

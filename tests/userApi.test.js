@@ -106,7 +106,6 @@ describe('Token based authentication', () => {
 
     const init = await api.get('/api/blogs');
     const initLength = init.body.length;
-    // console.log(initLength)
 
     await api.post('/api/users').send(userInfo);
     const login = await api.post('/api/login').send(userCreds);

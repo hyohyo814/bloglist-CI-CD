@@ -1,20 +1,21 @@
-import { useState } from 'react';
+import { useDispatch } from 'react-redux'
+import { setNotif } from '../reducers/notifReducer'
+import { login } from '../reducers/userReducer'
 
-const Login = ({ handle }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
+const Login = () => {
+  const dispatch = useDispatch()
 
   const handleLogin = (event) => {
-    event.preventDefault();
-    handle({
-      username: username,
-      password: password,
-    });
-    setUser(user);
-    setUsername('');
-    setPassword('');
-  };
+    event.preventDefault()
+    const creds = {
+      username: event.target.Username.value,
+      password: event.target.Password.value,
+    }
+    dispatch(login(creds))
+    dispatch(setNotif(`successfully logged in as ${event.target.Username.value}`, 5))
+    event.target.Username.value = ''
+    event.target.Password.value = ''
+  }
 
   return (
     <form onSubmit={handleLogin}>
@@ -22,9 +23,7 @@ const Login = ({ handle }) => {
         username
         <input
           type="text"
-          value={username}
           name="Username"
-          onChange={(event) => setUsername(event.target.value)}
           id="username"
         />
       </div>
@@ -32,15 +31,17 @@ const Login = ({ handle }) => {
         password
         <input
           type="text"
-          value={password}
           name="Password"
-          onChange={(event) => setPassword(event.target.value)}
           id="password"
         />
       </div>
-      <button id="loginbtn" type="submit">login</button>
+      <button
+        id="loginbtn"
+        type="submit">
+        login
+      </button>
     </form>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

@@ -25,17 +25,16 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', ({ username, password }) => {
-  // eslint-disable-next-line no-unused-vars
   const login = cy
     .request('POST', `${Cypress.env('BACKEND')}/login`, {
       username,
       password,
     })
     .then((login) => {
-      localStorage.setItem('loggedUser', JSON.stringify(login.body));
-      cy.visit('');
-    });
-});
+      localStorage.setItem('loggedUser', JSON.stringify(login.body))
+      cy.visit('')
+    })
+})
 
 Cypress.Commands.add('createBlog', ({ title, author, url }) => {
   cy.request({
@@ -51,7 +50,7 @@ Cypress.Commands.add('createBlog', ({ title, author, url }) => {
         JSON.parse(localStorage.getItem('loggedUser')).token
       }`,
     },
-  });
+  })
 
-  cy.visit('');
-});
+  cy.visit('')
+})

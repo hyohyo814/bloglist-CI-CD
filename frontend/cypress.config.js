@@ -1,9 +1,8 @@
-const { defineConfig } = require('cypress');
+const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
   e2e: {
-    // eslint-disable-next-line no-unused-vars
-    setupNodeEvents(_on, _config) {
+    setupNodeEvents(on, config) {
       // implement node event listeners here
     },
     baseUrl: 'http://localhost:3000',
@@ -11,4 +10,4 @@ module.exports = defineConfig({
   env: {
     BACKEND: 'http://localhost:3003/api',
   },
-});
+})
