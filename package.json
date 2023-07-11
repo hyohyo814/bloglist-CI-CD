@@ -8,6 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "test:e2e": "cd frontend && npm run test:e2e",
+    "build": "cd frontend && npm run build",
     "deploy": "flyctl deploy",
     "lint": "eslint .",
     "start:test": "concurrently \"cross-env NODE_ENV=test node index.js\" \"cd frontend && npm start\""
