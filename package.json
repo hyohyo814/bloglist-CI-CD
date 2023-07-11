@@ -11,11 +11,13 @@
     "build": "cd frontend && npm run build",
     "deploy": "flyctl deploy",
     "lint": "eslint .",
+    "start:testserv": "cross-env NODE_ENV=test node index.js",
     "start:test": "concurrently \"cross-env NODE_ENV=test node index.js\" \"cd frontend && npm start\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "concurrently": "^8.2.0",
     "cors": "^2.8.5",
@@ -24,10 +26,14 @@
     "lodash": "^4.17.21",
     "mongoose": "^7.2.2",
     "mongoose-unique-validator": "^4.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
+    "cypress": "^12.17.1",
     "dotenv": "^16.1.4",
     "eslint": "^8.42.0",
     "eslint-config-airbnb": "^19.0.4",
